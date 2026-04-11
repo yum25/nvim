@@ -41,12 +41,23 @@ return {
     end,
   },
 
-  -- Mason Configs
+  -- Mason configs
   {
     "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         "gopls",
+      },
+    },
+  },
+
+  -- Gitsigns
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      current_line_blame = true,
+      current_line_blame_opts = {
+        delay = 500, -- ms before blame appears
       },
     },
   },
