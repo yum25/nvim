@@ -61,7 +61,39 @@ return {
       },
     },
   },
-
+  -- Edgy.vim
+  {
+    "folke/edgy.nvim",
+    init = function()
+      vim.opt.laststatus = 3
+      vim.opt.splitkeep = "screen"
+    end,
+    opts = function(_, opts)
+      opts.left = opts.left or {}
+      table.insert(opts.left, {
+        title = "Files",
+        ft = "neo-tree",
+        size = { width = 25 },
+      })
+      return opts
+    end,
+  },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      terminal = {
+        win = {
+          style = "float",
+          border = "rounded",
+          position = "float",
+          width = 0.4,
+          height = 0.4,
+          row = 0.7,
+          col = 0.6,
+        },
+      },
+    },
+  },
   -- LSP diagnostics
   {
     "neovim/nvim-lspconfig",
