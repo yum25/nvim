@@ -80,17 +80,42 @@ return {
   },
   {
     "folke/snacks.nvim",
-    opts = {
-      terminal = {
-        win = {
-          style = "float",
-          border = "rounded",
-          position = "float",
-          width = 0.4,
-          height = 0.4,
-          row = 0.7,
-          col = 0.6,
-        },
+    keys = {
+      -- Regular small terminal (bottom left)
+      {
+        "<leader>tt",
+        function()
+          Snacks.terminal(nil, {
+            count = 1,
+            win = {
+              style = "float",
+              border = "rounded",
+              width = 0.4,
+              height = 0.4,
+              row = 0.7,
+              col = 0.6,
+            },
+          })
+        end,
+        desc = "Terminal (small)",
+      },
+      -- Large game terminal
+      {
+        "<leader>tg",
+        function()
+          Snacks.terminal(nil, {
+            count = 2,
+            win = {
+              style = "float",
+              border = "rounded",
+              width = 0.5,
+              height = 0.5,
+              row = 0.7,
+              col = 0.6,
+            },
+          })
+        end,
+        desc = "Terminal (game)",
       },
     },
   },
