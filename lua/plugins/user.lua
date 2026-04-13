@@ -1,4 +1,19 @@
 vim.opt.termguicolors = false
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "catppuccin",
+  callback = function()
+    local groups = {
+      "Normal",
+      "NormalNC",
+      "EndOfBuffer",
+      "SignColumn",
+    }
+
+    for _, group in ipairs(groups) do
+      vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
+    end
+  end,
+})
 return {
   -- Colorscheme
   {
@@ -80,6 +95,12 @@ return {
   },
   {
     "folke/snacks.nvim",
+    opts = {
+      picker = {
+        hidden = true, -- for hidden files
+        ignored = true, -- for .gitignore files
+      },
+    },
     keys = {
       -- Regular small terminal (bottom left)
       {
@@ -118,6 +139,19 @@ return {
         desc = "Terminal (game)",
       },
     },
+  },
+  -- Neotree
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = function(_, opts)
+      opts.filesystem = opts.filesystem or {}
+      opts.filesystem.filtered_items = {
+        visible = true,
+        hide_dotfiles = false,
+        hide_gitignored = false,
+      }
+      return opts
+    end,
   },
   -- LSP diagnostics
   {
