@@ -1,4 +1,9 @@
 vim.opt.termguicolors = false
+vim.keymap.set("n", "<leader>fH", function()
+  require("telescope.builtin").find_files({
+    cwd = vim.fn.expand("~"),
+  })
+end, { desc = "Find files in home directory" })
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "catppuccin",
   callback = function()
@@ -40,6 +45,7 @@ return {
       colorscheme = "catppuccin",
     },
   },
+
   -- Treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
@@ -52,6 +58,7 @@ return {
         "css",
         "svelte",
         "go",
+        "python",
       })
     end,
   },
@@ -64,6 +71,12 @@ return {
         "gopls",
       },
     },
+  },
+
+  -- Telescope
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
 
   -- Gitsigns
