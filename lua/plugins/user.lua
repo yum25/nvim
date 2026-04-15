@@ -1,9 +1,27 @@
+-- Use xterm-256
 vim.opt.termguicolors = false
+
+-- Keybinds
 vim.keymap.set("n", "<leader>fH", function()
   require("telescope.builtin").find_files({
-    cwd = vim.fn.expand("~"),
+    cwd = vim.fn.expand("~/Desktop"),
+    hidden = true,
+    find_command = {
+      "fd",
+      "--type",
+      "f",
+      "--hidden",
+      "--exclude",
+      ".git",
+      "--exclude",
+      "node_modules",
+      "--exclude",
+      ".cache",
+    },
   })
-end, { desc = "Find files in home directory" })
+end, { desc = "Find files in desktop directory" })
+
+--  Transparent background override
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "catppuccin",
   callback = function()
